@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import MainDashboard from './components/MainDashboard';
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import Boards from './components/Boards'
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes} from 'react-router-dom'
+import Board from './components/Board';
 
 function App() {
+  
+  const [langs, setLang] = useState(['JS', 'PYTHON', 'TS'])
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainDashboard />} />
+          <Route path='/:name' element={<Board />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
